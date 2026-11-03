@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ELYAGENTIC</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf5ff;--bg2:#dcedfc;--card:rgba(255,255,255,.72);--line:#b9d9f5;--sky:#4fb3f6;--sky2:#8fd0ff;--deep:#1d5f9e;--ink:#0f2a47;--mute:#55748f;--ok:#2aa88a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-behavior:smooth;scroll-padding-top:70px;height:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100%;color:var(--ink);font:16px/1.6 "IBM Plex Mono",ui-monospace,monospace;background:radial-gradient(800px 500px at 85% -5%,#c6e6ff,transparent 60%),radial-gradient(700px 500px at -5% 40%,#d6efff,transparent 60%),var(--bg)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(rgba(79,179,246,.28) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(#000,transparent 80%)}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;margin:0}
+a{color:var(--deep)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:18px;align-items:center;padding:12px 5vw;background:rgba(234,245,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+header b{font:700 20px "Space Grotesk";letter-spacing:.06em;margin-right:auto;color:var(--deep)}
+header a{text-decoration:none;font-size:13px;color:var(--mute)}header a:hover{color:var(--deep)}
+.pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sky);margin-right:8px;box-shadow:0 0 0 0 rgba(79,179,246,.6);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 10px rgba(79,179,246,0)}}
+main{position:relative;max-width:1100px;margin:0 auto;padding:0 5vw 80px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;padding:64px 0 24px}
+.hero h1{font-size:clamp(44px,8vw,88px);line-height:.95;letter-spacing:.02em;color:var(--deep)}
+.hero p{color:var(--mute);max-width:46ch;margin:18px 0 24px}
+.btn{font:inherit;font-weight:500;cursor:pointer;border:0;border-radius:8px;padding:11px 20px;background:var(--deep);color:#fff;box-shadow:0 8px 24px rgba(29,95,158,.25)}
+.btn.alt{background:#fff;color:var(--deep);border:1px solid var(--line);box-shadow:none;margin-left:8px}
+.drop{margin-top:22px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--card);backdrop-filter:blur(8px);display:grid;gap:6px;max-width:440px}
+.drop label{font-size:12px;color:var(--mute)}
+.cabig{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:28px;padding:22px 26px;border:2px solid var(--sky);border-radius:16px;background:linear-gradient(135deg,#fff,var(--bg2));box-shadow:0 18px 50px rgba(79,179,246,.35)}
+.cabig span{font:700 20px "Space Grotesk",sans-serif;color:var(--deep)}
+.cabig code{flex:1;min-width:240px;overflow-wrap:anywhere;font:500 clamp(15px,2.6vw,26px) "IBM Plex Mono",monospace;color:var(--ink)}
+.cabig button{border:0;border-radius:10px;background:var(--deep);color:#fff;padding:12px 24px;font:500 15px "IBM Plex Mono",monospace;cursor:pointer}
+.drop .hint{font-size:11px;color:var(--mute)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,.chip:focus-visible{outline:2px solid var(--deep);outline-offset:2px}
+.term{border:1px solid var(--line);border-radius:12px;background:var(--card);backdrop-filter:blur(8px);box-shadow:0 20px 50px rgba(79,179,246,.25);overflow:hidden}
+.tb{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--mute)}
+.tb i{width:10px;height:10px;border-radius:50%;background:var(--sky2)}.tb span{margin-left:auto}
+#out{height:250px;overflow:auto;padding:14px;font-size:13px;white-space:pre-wrap}
+#out .u{color:var(--deep)}#out .a{color:var(--ink)}#out .ok{color:var(--ok)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}
+.chip{font:12px inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--deep);border-radius:20px;padding:4px 10px}.chip:hover{background:var(--bg2)}
+.in{display:flex;border-top:1px solid var(--line)}
+.in input{flex:1;border:0;background:transparent;padding:12px 14px;font:13px inherit;color:var(--ink)}
+.in button{border:0;background:var(--sky);color:#fff;padding:0 18px;cursor:pointer;font:inherit}
+.note{font-size:11px;color:var(--mute);padding:0 14px 10px}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:34px 0 0}
+.strip div{border-left:3px solid var(--sky);padding:2px 14px}.strip strong{display:block;font:700 24px "Space Grotesk";color:var(--deep)}.strip span{font-size:12px;color:var(--mute)}
+section{padding-top:64px}
+h2{font-size:32px;color:var(--deep);margin-bottom:6px}.sub{color:var(--mute);font-size:13px;margin:0 0 22px;max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{text-align:left;font:inherit;color:inherit;cursor:pointer;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--card);backdrop-filter:blur(6px);transition:transform .15s,box-shadow .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--sky);box-shadow:0 14px 32px rgba(79,179,246,.3)}
+.card h3{font-size:18px;margin-bottom:6px;color:var(--ink)}.card p{margin:0;font-size:13px;color:var(--mute)}
+.card .ic{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--sky2),var(--sky));color:#fff;margin-bottom:10px;font-size:16px}
+.diagram{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px;overflow-x:auto}
+.diagram svg{min-width:720px;width:100%;height:auto;display:block}
+.node{cursor:pointer}.node rect{fill:#fff;stroke:var(--sky);stroke-width:1.5;transition:fill .2s}.node:hover rect{fill:var(--bg2)}
+.node text{font:500 13px "IBM Plex Mono";fill:var(--ink);text-anchor:middle}
+.flow{stroke:var(--sky);stroke-width:2;fill:none;stroke-dasharray:6 6;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-12}}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{counter-increment:s;display:flex;gap:14px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.step::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;font-weight:700}
+.step h3{font-size:17px}.step p{margin:2px 0 0;font-size:13px;color:var(--mute)}
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.ph{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--card)}.ph em{font-style:normal;font-size:11px;color:#fff;background:var(--sky);border-radius:20px;padding:1px 10px}
+.ph h3{margin:8px 0 6px;font-size:18px}.ph ul{margin:0;padding-left:18px;font-size:13px;color:var(--mute)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:500}details p{margin:8px 0 0;font-size:13px;color:var(--mute)}
+.warn{border:1px solid #e0b84f;background:#fff8e1;border-radius:10px;padding:14px;font-size:13px;margin-top:22px}
+footer{border-top:1px solid var(--line);padding:26px 5vw;color:var(--mute);font-size:12px;text-align:center}
+#modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(15,42,71,.4);backdrop-filter:blur(4px)}
+#modal.on{display:flex}
+.box{max-width:500px;width:100%;max-height:85vh;overflow:auto;border:1px solid var(--sky);border-radius:14px;background:#fff;padding:24px;box-shadow:0 30px 80px rgba(29,95,158,.35);animation:in .18s}
+@keyframes in{from{transform:scale(.96);opacity:0}}
+.box h3{font-size:22px;color:var(--deep)}.box p{font-size:14px}
+#toasts{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:grid;gap:8px;max-width:320px}
+.toast{background:#fff;border:1px solid var(--sky);border-radius:10px;padding:10px 14px;font-size:13px;box-shadow:0 10px 30px rgba(79,179,246,.35);animation:in .2s}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><b><span class="pulse"></span>ELYAGENTIC</b>
+<a href="#demo">Demo</a><a href="#cap">Capabilities</a><a href="#arch">Architecture</a><a href="#how">How it works</a><a href="#safe">Safety</a><a href="#road">Roadmap</a><a href="#faq">FAQ</a></header>
+<main>
+<div class="cabig"><span>$ELYAGENTIC CA</span><code id="cav">Coming soon</code><button type="button" id="cacopy">Copy</button></div>
+<div class="hero" id="demo">
+<div>
+<h1>ELY<br>AGENTIC</h1>
+<p>The AI agent for Elysium. Say what you want in plain words. The agent reads the chain, builds the transaction, checks it against your limits and asks you to sign.</p>
+<button class="btn" id="go">Try the demo</button><button class="btn alt" id="wl">Join waitlist</button>
+</div>
+<div class="term" aria-label="Agent demo">
+<div class="tb"><i></i><i></i><i></i><span>elyagentic · preview</span></div>
+<div id="out" aria-live="polite"></div>
+<div class="chips" id="chips"></div>
+<form class="in" id="f"><input id="t" placeholder="Ask the agent…" aria-label="Message"><button>Send</button></form>
+<div class="note">Simulated output. Preview mode does not connect to the chain.</div>
+</div>
+</div>
+<div class="strip">
+<div><strong>100–200 ms</strong><span>Elysium block time</span></div>
+<div><strong>HYPE</strong><span>native gas token</span></div>
+<div><strong>Nov 9</strong><span>planned mainnet launch</span></div>
+<div><strong>You sign</strong><span>keys stay with you</span></div>
+</div>
+
+<section id="cap"><h2>What the agent does</h2><p class="sub">Tap a card for the details. Features marked planned are not live yet.</p><div class="grid" id="caps"></div></section>
+
+<section id="arch"><h2>Architecture</h2><p class="sub">Tap any block. The agent proposes, the policy layer checks, you sign.</p>
+<div class="diagram"><svg viewBox="0 0 760 250" role="img" aria-label="Architecture diagram">
+<path class="flow" d="M150 60H210M370 60H430M590 60H640"/><path class="flow" d="M510 85V150M300 85V150"/><path class="flow" d="M370 185H430"/>
+<g class="node" data-n="0"><rect x="10" y="30" width="140" height="60" rx="10"/><text x="80" y="65">You (chat)</text></g>
+<g class="node" data-n="1"><rect x="210" y="30" width="160" height="60" rx="10"/><text x="290" y="65">Intent parser</text></g>
+<g class="node" data-n="2"><rect x="430" y="30" width="160" height="60" rx="10"/><text x="510" y="65">Policy guard</text></g>
+<g class="node" data-n="3"><rect x="640" y="30" width="110" height="60" rx="10"/><text x="695" y="65">Your wallet</text></g>
+<g class="node" data-n="4"><rect x="210" y="150" width="160" height="70" rx="10"/><text x="290" y="190">Chain reader</text></g>
+<g class="node" data-n="5"><rect x="430" y="150" width="160" height="70" rx="10"/><text x="510" y="190">Tx simulator</text></g>
+<g class="node" data-n="6"><rect x="640" y="150" width="110" height="70" rx="10"/><text x="695" y="190">Elysium</text></g>
+<path class="flow" d="M590 185H640"/><path class="flow" d="M695 90V150"/>
+</svg></div></section>
+
+<section id="how"><h2>How it works</h2><p class="sub">From a sentence to a signed transaction.</p>
+<div class="steps">
+<div class="step"><div><h3>You describe the goal</h3><p>“Swap 10 HYPE for the token I was watching, max 1% slippage.”</p></div></div>
+<div class="step"><div><h3>The agent reads Elysium</h3><p>It pulls balances, pools and gas from the chain through RPC.</p></div></div>
+<div class="step"><div><h3>It simulates and checks limits</h3><p>The transaction is dry-run first. Spend caps and allow-lists must pass.</p></div></div>
+<div class="step"><div><h3>You review and sign</h3><p>You see a plain-language summary. Nothing is sent without your signature.</p></div></div>
+</div></section>
+
+<section id="safe"><h2>Safety by design</h2><p class="sub">Principles the agent is built around.</p><div class="grid" id="safeg"></div></section>
+
+<section id="road"><h2>Roadmap</h2><p class="sub">Plans, not promises. Dates depend on Elysium’s own launch.</p>
+<div class="road">
+<div class="ph"><em>Phase 1</em><h3>Read &amp; explain</h3><ul><li>Wallet and token lookup</li><li>Gas and block stats</li><li>Plain-language answers</li></ul></div>
+<div class="ph"><em>Phase 2</em><h3>Act with approval</h3><ul><li>Swaps and transfers</li><li>Simulation before signing</li><li>Spend limits</li></ul></div>
+<div class="ph"><em>Phase 3</em><h3>Watch &amp; alert</h3><ul><li>Wallet and launch alerts</li><li>Dev-wallet history</li><li>Scheduled tasks</li></ul></div>
+<div class="ph"><em>Phase 4</em><h3>HyperCore-aware</h3><ul><li>After Elysium’s planned HyperCore upgrade</li><li>Spot and perp context</li></ul></div>
+</div>
+<p class="warn">ELYAGENTIC is a preview concept. Elysium’s docs say specs and timelines may still change before mainnet, and HyperCore hooks are planned for about a month after launch. This is not financial advice.</p></section>
+
+<section id="faq"><h2>FAQ</h2><p class="sub">&nbsp;</p>
+<details><summary>Does the agent hold my keys?</summary><p>No. It prepares transactions and you sign them in your own wallet.</p></details>
+<details><summary>Which network?</summary><p>Elysium, the Hyperliquid-aligned L2 by Kinetiq. Gas is paid in HYPE.</p></details>
+<details><summary>Is this live?</summary><p>The demo above is simulated. The mainnet integration depends on Elysium’s launch, planned for November 9.</p></details>
+<details><summary>Can it make mistakes?</summary><p>Yes. That is why it simulates first, enforces limits and asks for your approval.</p></details>
+</section>
+</main>
+<footer>ELYAGENTIC · built for the Elysium ecosystem · unofficial and not affiliated with Kinetiq</footer>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="box"><h3 id="mt"></h3><p id="mb"></p><button class="btn" id="mc">Close</button></div></div>
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+function toast(t){var e=document.createElement("div");e.className="toast";e.textContent=t;$("toasts").appendChild(e);setTimeout(function(){e.remove()},3200)}
+function pop(t,b){$("mt").textContent=t;$("mb").textContent=b;$("modal").classList.add("on");$("mc").focus()}
+function shut(){$("modal").classList.remove("on")}
+$("mc").onclick=shut;$("modal").onclick=function(e){if(e.target===this)shut()};document.onkeydown=function(e){if(e.key==="Escape")shut()};
+function grid(id,a){a.forEach(function(x){var b=document.createElement("button");b.className="card";b.innerHTML='<div class="ic">'+x[0]+'</div><h3>'+x[1]+'</h3><p>'+x[2]+'</p>';b.onclick=function(){pop(x[1],x[3])};$(id).appendChild(b)})}
+grid("caps",[
+["◎","Chain lookup","Balances, tokens, pools, gas.","Ask about any address or token on Elysium. The agent reads the chain and explains the result in plain words. Planned for phase 1."],
+["⇄","Swaps &amp; transfers","Describe it, review it, sign it.","The agent builds the transaction from your sentence, simulates it and shows a summary. You approve in your wallet. Planned for phase 2."],
+["◉","Wallet watching","Alerts for wallets you follow.","Follow a wallet and get notified when it deploys a token, adds liquidity or moves funds. Planned for phase 3."],
+["⌕","Dev history","What a deployer launched before.","Look up a deployer wallet and see its earlier tokens and what happened to them. Planned for phase 3."],
+["⏱","Scheduled tasks","Run routines on a timer.","Repeat checks like gas or balance reports on a schedule you set. Planned for phase 3."],
+["⬡","HyperCore context","Spot and perp awareness.","Elysium’s HyperCore hooks are planned for about a month after mainnet. Once live, the agent can use them for market context. Planned for phase 4."]]);
+grid("safeg",[
+["⛨","Non-custodial","You hold the keys.","The agent never stores private keys or seed phrases. Every transaction needs your signature."],
+["✓","Simulate first","Dry-run before sending.","Each action is simulated so you see the expected outcome before you approve."],
+["⌗","Spend limits","Caps you control.","Set maximum amounts per action and an allow-list of contracts. Anything outside is blocked."],
+["⚑","Plain summaries","No blind signing.","You get a short human-readable description of what the transaction does."]]);
+var N=[["You","You type a goal in plain language in the chat."],["Intent parser","Turns your sentence into a structured action: what, how much, which token, which limits."],["Policy guard","Checks the action against your spend caps and contract allow-list."],["Your wallet","Where you review and sign. Keys never leave it."],["Chain reader","Reads balances, pools and gas from an Elysium RPC node."],["Tx simulator","Dry-runs the transaction and reports the expected result."],["Elysium","The L2 where the final transaction lands, paid in HYPE."]];
+document.querySelectorAll(".node").forEach(function(g){g.onclick=function(){var n=N[+g.dataset.n];pop(n[0],n[1])}});
+var R={"gas":"Elysium targets blocks of about 100–200 ms and uses HYPE for gas. Live gas readings will come from the RPC once connected.","swap":"Plan: 10 HYPE → target token.\n1. Read pool and price\n2. Simulate swap (max slippage 1%)\n3. Show summary\n4. Wait for your signature\nStatus: awaiting approval (simulated).","watch":"Watching dev wallet (simulated).\nI will alert you when it deploys a token or adds liquidity.","bridge":"Bridge plan: HyperEVM → Elysium.\nMainnet bridging is planned after launch. On testnet use the Kinetiq bridge.","def":"Preview mode: I can only run the sample commands. The full agent will parse any request, simulate it and ask you to sign."};
+var C=[["Gas on Elysium","gas"],["Swap 10 HYPE","swap"],["Watch dev wallet","watch"],["Bridge to Elysium","bridge"]];
+var out=$("out");var busy=false;
+function line(c,t){var d=document.createElement("div");d.className=c;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight;return d}
+function type(el,t,cb){var i=0;(function s(){el.textContent=t.slice(0,i);out.scrollTop=out.scrollHeight;if(i++<t.length)setTimeout(s,12);else if(cb)cb()})()}
+function ask(q,k){if(busy)return;busy=true;line("u","> "+q);var d=line("a","");type(d,R[k]||R.def,function(){busy=false})}
+C.forEach(function(c){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=c[0];b.onclick=function(){ask(c[0],c[1])};$("chips").appendChild(b)});
+$("f").onsubmit=function(e){e.preventDefault();var v=$("t").value.trim();if(!v)return;$("t").value="";var l=v.toLowerCase(),k=l.indexOf("gas")>-1?"gas":l.indexOf("swap")>-1?"swap":l.indexOf("watch")>-1?"watch":l.indexOf("bridge")>-1?"bridge":"def";ask(v,k)};
+line("ok","ELYAGENTIC ready. Pick a sample command below.");
+$("cacopy").onclick=function(){var t=$("cav").textContent.trim();if(!/^0x[a-fA-F0-9]{40}$/.test(t)){toast("CA is not published yet");return}try{navigator.clipboard.writeText(t).then(function(){toast("CA copied")},function(){toast("Copy blocked. Select the CA manually.")})}catch(e){toast("Copy blocked. Select the CA manually.")}};
+$("go").onclick=function(){$("t").focus();toast("Pick a command in the demo")};
+$("wl").onclick=function(){toast("Waitlist is not open yet. Check back soon.")};
+setTimeout(function(){toast("Preview: demo output is simulated")},1500);
+</script>
+</body>
+</html>
